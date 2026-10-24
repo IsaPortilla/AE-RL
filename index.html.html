@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adulting Escape & Rescue Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1f3dff;--blue2:#1229c9;--ink:#0c1a45;--mut:#47557f;--bg:#fff;--soft:#eaf0ff;--line:#cfd9fa;--warn:#fff3c4;--warnt:#5c4300;--ok:#0b7a4b;--err:#b3261e;--onblue:#fff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--blue:#6f86ff;--blue2:#9aabff;--ink:#eef2ff;--mut:#b3bedf;--bg:#0b1230;--soft:#131d4a;--line:#2a3878;--warn:#3b3000;--warnt:#ffe28a;--ok:#5fd6a0;--err:#ff9a92;--onblue:#0b1230;color-scheme:dark}}
+:root[data-theme="dark"]{--blue:#6f86ff;--blue2:#9aabff;--ink:#eef2ff;--mut:#b3bedf;--bg:#0b1230;--soft:#131d4a;--line:#2a3878;--warn:#3b3000;--warnt:#ffe28a;--ok:#5fd6a0;--err:#ff9a92;--onblue:#0b1230;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 Nunito,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+h1,h2,h3{font-weight:900;line-height:1.1;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,6vw,3.9rem)}h2{font-size:clamp(1.7rem,4vw,2.6rem)}h3{font-size:1.2rem}p{margin:0 0 1em;max-width:62ch}
+a{color:var(--blue)}:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}section{padding:72px 0}.soft{background:var(--soft)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--bg);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;gap:22px;height:64px}.logo{font-weight:900;font-size:1.1rem;text-decoration:none;color:var(--ink);margin-right:auto}.logo b{color:var(--blue)}
+nav a.l{text-decoration:none;color:var(--mut);font-weight:600}nav a.l:hover{color:var(--blue)}@media(max-width:780px){nav a.l{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--blue);background:var(--blue);color:var(--onblue);font:800 1rem Nunito,sans-serif;padding:12px 22px;border-radius:999px;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px);background:var(--blue2)}.btn.o{background:transparent;color:var(--blue)}.btn.o:hover{background:var(--soft)}.btn[disabled]{opacity:.55;cursor:not-allowed;transform:none}
+.hero{padding:56px 0 72px}.hero .g{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}@media(max-width:860px){.hero .g{grid-template-columns:1fr}}
+.sub{font-size:1.2rem;color:var(--mut)}.row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.card{background:var(--bg);border:2px solid var(--line);border-radius:24px;padding:24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.ico{width:52px;height:52px;border-radius:16px;background:var(--soft);display:grid;place-items:center;font-size:1.6rem;margin-bottom:14px}
+.soft .card{border-color:transparent}
+.reto{background:var(--blue);color:var(--onblue);border:0;transform:rotate(1.5deg)}.reto .tag{display:inline-block;background:var(--onblue);color:var(--blue);font-weight:800;font-size:.8rem;border-radius:999px;padding:3px 12px;margin-bottom:12px}
+.reto button{display:block;width:100%;text-align:left;margin-top:10px;padding:12px 16px;border-radius:16px;border:2px solid var(--onblue);background:transparent;color:inherit;font:700 1rem Nunito,sans-serif;cursor:pointer}.reto button:hover,.reto button[aria-pressed=true]{background:var(--onblue);color:var(--blue)}
+#fb{min-height:3.2em;margin-top:14px;font-weight:600}
+.quote{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;margin:0 0 .6em;max-width:30ch}
+ol.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;counter-reset:s}ol.steps li{counter-increment:s;position:relative;padding-top:56px}ol.steps li::before{content:counter(s);position:absolute;top:0;left:0;width:42px;height:42px;border-radius:50%;background:var(--blue);color:var(--onblue);display:grid;place-items:center;font-weight:900}
+.note{background:var(--warn);color:var(--warnt);border-radius:14px;padding:10px 14px;font-weight:600;font-size:.95rem;margin:0 0 16px}
+.pend{font-style:italic;color:var(--mut)}dl.o{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;margin:0 0 20px}dl.o dt{font-weight:800}dl.o dd{margin:0}
+.price{font-size:2.4rem;font-weight:900;color:var(--blue)}
+label,legend{font-weight:800;display:block;margin-bottom:6px}fieldset{border:0;padding:0;margin:0}.f{margin-bottom:18px}
+input[type=text],input[type=email],select{width:100%;padding:12px 14px;font:600 1rem Nunito,sans-serif;border:2px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink)}
+.sc{display:flex;gap:8px;flex-wrap:wrap}.sc label{margin:0;font-weight:700}.sc input{position:absolute;opacity:0}.sc span{display:grid;place-items:center;width:48px;height:48px;border:2px solid var(--line);border-radius:14px;cursor:pointer}.sc input:checked+span{background:var(--blue);color:var(--onblue);border-color:var(--blue)}.sc input:focus-visible+span{outline:3px solid var(--blue);outline-offset:3px}
+.chk{display:flex;gap:10px;align-items:flex-start}.chk input{margin-top:6px;width:20px;height:20px}.chk label{font-weight:600;margin:0;font-size:.95rem}
+.err{color:var(--err);font-weight:700;font-size:.9rem;min-height:1.2em;margin:4px 0 0}.msg{border-radius:14px;padding:12px 16px;font-weight:700;margin-top:16px}.msg.ok{background:var(--soft);color:var(--ok)}.msg.bad{background:var(--warn);color:var(--warnt)}
+details{border-bottom:1px solid var(--line);padding:14px 0}summary{font-weight:800;cursor:pointer}details p{margin:10px 0 0;color:var(--mut)}
+.cta{background:var(--blue);color:var(--onblue);text-align:center;border-radius:32px;padding:56px 24px}.cta h2{margin-inline:auto;max-width:18ch}.cta .btn{background:var(--onblue);color:var(--blue);border-color:var(--onblue)}.cta .btn.o{background:transparent;color:var(--onblue)}.cta .row{justify-content:center}
+footer{padding:40px 0;color:var(--mut);font-size:.95rem}footer a{cursor:pointer}
+dialog{width:min(560px,calc(100% - 24px));border:0;border-radius:24px;padding:28px;background:var(--bg);color:var(--ink)}dialog::backdrop{background:rgba(5,10,40,.6)}
+.mx{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.mx .card{padding:16px}.mx b{display:block;font-size:1.8rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.reto{transform:none}}
+.opt{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}.opt input{margin-top:6px;width:20px;height:20px}.opt label{margin:0;font-weight:600}.bar{display:grid;grid-template-columns:150px 1fr 52px;gap:10px;align-items:center;margin:8px 0}.bar i{display:block;height:18px;border-radius:9px;background:var(--blue);min-width:2px}.bar span{background:var(--soft);border-radius:9px;display:block}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></head><body>
+
+<header><div class="wrap"><nav>
+<a class="logo" href="#top">Adulting <b>Escape &amp; Rescue</b> Lab</a>
+<a class="l" href="#experiencia">La experiencia</a><a class="l" href="#como">Cómo funciona</a><a class="l" href="#faq">Preguntas frecuentes</a>
+<button class="btn" data-cta data-reserve>Reservar mi cupo</button></nav></div></header>
+
+<main id="top">
+<div class="wrap" id="banner" hidden></div>
+
+<section class="hero"><div class="wrap g"><div>
+<h1>La vida adulta no viene con manual. Aprende a resolverla jugando.</h1>
+<p class="sub">Pon a prueba tus habilidades, enfréntate a retos de la vida real y descubre que equivocarte también es parte de aprender.</p>
+<div class="row"><a class="btn" href="#interes" data-cta>Quiero vivir la experiencia</a><a class="btn o" href="#como">Descubrir cómo funciona</a></div></div>
+<div class="card reto" aria-labelledby="rt"><span class="tag">Reto en evaluación · pruébalo</span>
+<h3 id="rt">Faltan 10 minutos para salir y se te cae un botón de la camisa. ¿Qué haces?</h3>
+<button aria-pressed="false">Busco un tutorial</button><button aria-pressed="false">Pido ayuda a alguien</button><button aria-pressed="false">Lo cuso con lo que tengo a mano</button>
+<p id="fb" aria-live="polite">Elige una opción: aquí no hay respuesta incorrecta.</p></div></div></section>
+
+<section class="soft"><div class="wrap"><h2>Ver cómo se hace no es lo mismo que hacerlo.</h2>
+<div class="cards">
+<div class="card"><div class="ico">▶️</div><p class="quote">Sabes buscar tutoriales.</p><p>Practicar es otra historia: nadie te da pausa ni retroceso.</p></div>
+<div class="card"><div class="ico">🧩</div><p class="quote">Equivocarte está bien.</p><p>No saber cómo reaccionar es parte del reto.</p></div>
+<div class="card"><div class="ico">🚪</div><p class="quote">La independencia también se practica.</p><p>Mejor ensayarla antes de que te toque resolverla solo.</p></div></div></div></section>
+
+<section id="experiencia"><div class="wrap"><h2>Adulting Escape &amp; Rescue Lab</h2>
+<p class="sub">Una experiencia práctica para jóvenes de 18 a 26 años: retos cotidianos en un entorno seguro, divertido y controlado.</p>
+<div class="cards">
+<div class="card"><div class="ico">🛠️</div><h3>Aprender haciendo</h3><p>Menos teoría, más manos a la obra.</p></div>
+<div class="card"><div class="ico">🛟</div><h3>Problemas en entorno seguro</h3><p>Equivocarte aquí no tiene consecuencias reales.</p></div>
+<div class="card"><div class="ico">💪</div><h3>Confianza y autonomía</h3><p>La práctica te da seguridad para decidir.</p></div></div></div></section>
+
+<section class="soft" id="como"><div class="wrap"><h2>¿Cómo funciona?</h2>
+<ol class="steps"><li><h3>Recibes un reto</h3><p>Lo eliges o te llega.</p></li><li><h3>Lo intentas resolver</h3><p>Con los recursos disponibles.</p></li><li><h3>Llegan los imprevistos</h3><p>Decisiones e imprevistos simulados.</p></li><li><h3>Aprendes de tus errores</h3><p>Descubres cómo mejorar.</p></li></ol>
+<h3 style="margin-top:32px">Ejemplos de retos</h3>
+<div class="cards"><div class="card"><div class="ico">🧵</div><p>Reparar una prenda o coser un botón.</p></div><div class="card"><div class="ico">🏠</div><p>Resolver una situación doméstica.</p></div><div class="card"><div class="ico">🪙</div><p>Administrar recursos limitados.</p></div><div class="card"><div class="ico">⏱️</div><p>Tomar decisiones bajo presión de tiempo.</p></div><div class="card"><div class="ico">🚗</div><p>Cambiar la llanta de un carro.</p></div><div class="card"><div class="ico">✨</div><p>Y muchos otros retos de la vida diaria.</p></div></div>
+</div></section>
+
+<section id="oferta"><div class="wrap"><h2>La oferta de preventa</h2>
+<div class="card" style="max-width:640px">
+<p class="note" id="offnote"></p>
+<h3>Adulting Escape &amp; Rescue Lab</h3>
+<div class="price" id="price"></div><p id="regular"></p>
+<dl class="o"><dt>Incluye</dt><dd data-cfg="incluye"></dd><dt>Modalidad</dt><dd data-cfg="modalidad"></dd><dt>Duración</dt><dd data-cfg="duracion"></dd><dt>Fecha</dt><dd data-cfg="fecha"></dd><dt>Lugar</dt><dd data-cfg="lugar"></dd><dt>Cupos</dt><dd data-cfg="cupos"></dd></dl>
+<p><b>Intención de reserva:</b> <span id="getres"></span></p>
+<button class="btn" data-cta data-reserve>Responder y reservar mi cupo</button></div></div></section>
+
+<section class="soft" id="interes"><div class="wrap"><div class="card" style="max-width:640px">
+<h2>Cuéntanos qué te interesa</h2><p>Cuéntanos qué piensas. Responder no te compromete y no se realiza ningún cobro: puedes contestar que no.</p>
+<form id="fi" novalidate>
+<div class="f"><label for="n">Nombre</label><input id="n" type="text" autocomplete="name"><p class="err" data-e="n"></p></div>
+<div class="f"><label for="em">Correo electrónico</label><input id="em" type="email" autocomplete="email"><p class="err" data-e="em"></p></div>
+<div class="f"><label for="ag">Edad</label><select id="ag"></select><p class="err" data-e="ag"></p></div>
+<div class="f"><label for="sk">¿Qué habilidad de la vida adulta te gustaría aprender?</label><select id="sk"><option value="">Elige una</option><option>Cocinar y organizar comidas</option><option>Manejar un presupuesto</option><option>Reparaciones del hogar</option><option>Arreglar ropa</option><option>Trámites y papeles</option><option>Otra</option></select><p class="err" data-e="sk"></p></div>
+<fieldset class="f"><legend>¿Qué tan interesado estás? (1 = poco, 5 = mucho)</legend><div class="sc" id="sc"></div><p class="err" data-e="it"></p></fieldset>
+<fieldset class="f"><legend id="wlq"></legend>
+<div class="opt"><input type="radio" id="w1" name="wl" value="si"><label for="w1">Sí, estaría dispuesto/a a reservar.</label></div>
+<div class="opt"><input type="radio" id="w2" name="wl" value="no"><label for="w2">No, no reservaría a ese precio.</label></div>
+<div class="opt"><input type="radio" id="w3" name="wl" value="duda"><label for="w3">No estoy seguro/a; necesitaría más información.</label></div><p class="err" data-e="wl"></p></fieldset>
+<div class="f chk"><input id="co" type="checkbox"><label for="co">Autorizo el tratamiento de mis datos para contactarme sobre esta experiencia y medir el interés en ella. <a href="#" data-legal="datos">Ver política</a></label></div><p class="err" data-e="co"></p>
+<button class="btn" type="submit" id="bi">Enviar mi respuesta</button><div id="ri" aria-live="polite"></div></form></div></div></section>
+
+<section id="faq"><div class="wrap"><h2>Preguntas frecuentes</h2>
+<details><summary>¿Qué es Adulting Escape &amp; Rescue Lab?</summary><p>Una experiencia práctica de retos cotidianos para jóvenes de 18 a 26 años, en un entorno seguro.</p></details>
+<details><summary>¿Necesito experiencia previa?</summary><p>No. No es necesaria experiencia previa: la idea es aprender.</p></details>
+<details><summary>¿Qué tipo de retos encontraré?</summary><p>Retos cotidianos como coser un botón, cambiar la llanta de un carro, resolver una situación doméstica o administrar recursos limitados.</p></details>
+<details><summary>¿Es una actividad individual o grupal?</summary><p>Puede ser individual o grupal.</p></details>
+<details><summary>¿Dónde y cuándo se realizará?</summary><p data-cfgf="fl"></p></details>
+<details><summary>¿Cuánto cuesta participar?</summary><p data-cfgf="pr"></p></details>
+<details><summary>¿Qué significa reservar en preventa?</summary><p data-cfgf="rv"></p></details></div></section>
+
+<section id="admin" hidden><div class="wrap"><h2>Resultados del experimento (privado)</h2>
+<p>Solo visible para el administrador. Evidencia de intención declarada de reserva: no hay transacciones económicas en esta fase.</p>
+<div id="lg"><label for="ak">Clave de administrador</label><input id="ak" type="password" autocomplete="off" style="max-width:320px"><div class="row"><button class="btn" id="al">Entrar</button></div></div><div id="adm" hidden><button class="btn" id="exp">Exportar respuestas a Excel</button></div><p id="exm" aria-live="polite"></p>
+<div id="mx"></div><div id="ch" style="margin-top:20px"></div>
+<details><summary>Definiciones y denominadores</summary><p><b>Visita única:</b> un visitante identificado (no cuenta recargas); no es un interesado. <b>Participante real:</b> respuesta con consentimiento y no marcada como prueba. <b>Interesado elegible:</b> participante real de 18 a 26 años; es el denominador de las dos tasas. <b>Tasa de disposición:</b> elegibles que responden “Sí” / interesados elegibles. <b>Tasa de confirmación de intención:</b> elegibles que confirmaron en el paso de confirmación / interesados elegibles. Un “Sí” sin confirmar no cuenta como intención confirmada. <b>Ventana:</b> fecha de inicio a fin configuradas. Un registro por correo. Criterio del experimento: al menos 20 % de los interesados reserva anticipadamente al precio establecido; aquí se mide como intención declarada.</p></details></div></section>
+
+<section><div class="wrap"><div class="cta"><h2>Tu próxima habilidad adulta empieza con un reto.</h2>
+<div class="row"><button class="btn" data-cta data-reserve>Quiero reservar mi cupo</button><a class="btn o" href="#interes">Ir al formulario de interés</a><a class="btn o" href="#oferta">Ver la oferta</a></div></div></div></section>
+</main>
+
+<footer><div class="wrap"><p><b>Adulting Escape &amp; Rescue Lab</b> · Contacto: <span data-cfg="contacto"></span></p>
+<p><a data-legal="datos" tabindex="0" role="link">Política de tratamiento de datos</a> · <a data-legal="terminos" tabindex="0" role="link">Términos y condiciones de reserva</a></p>
+<p>Experiencia en desarrollo y validación. No es una oferta comercial definitiva.</p></div></footer>
+
+<dialog id="dl"><div id="dlb"></div><div class="row"><button class="btn o" id="dlx">Cerrar</button></div></dialog>
+
+<script>
+/* ===== CONFIGURACIÓN (el equipo completa estos valores antes de publicar) ===== */
+const CONFIG={
+ estado:"activa",              // "borrador" | "activa" | "cerrada"
+ precioPreventa:15000,         // número. null = pendiente
+ precioRegular:null,           // opcional
+ moneda:"COP",
+ incluye:"Kit de costura", modalidad:"Individual o grupal", duracion:"2 horas", fecha:"20 de octubre de 2026", lugar:"Icesi, edificio N · salón por confirmar",
+ cupos:15,                     // solo si el límite es real
+ tipoReserva:"sin_pago",       // "sin_pago" | "con_pago"
+ urlPagos:null,                // enlace de pago del proveedor real (obligatorio para "con_pago")
+ contacto:null, urlTerminos:null, urlPoliticaDatos:null,
+ textoTerminos:null, textoDatos:null,
+ pendientes:["fecha","lugar","cupos","modalidad"], // valores aún no confirmados: se muestran "(por confirmar)"
+ fechaInicio:null, fechaFin:null,  // ventana del experimento, p. ej. "2026-10-23"
+ muestraMinima:null,              // n mínimo de elegibles para concluir
+ urlScript:"https://script.google.com/macros/s/AKfycbwKFSebwkXqN1EEYlUkrKZsMCzl1-06nEWaiGQSqRxOn6wLXY0mbBo3P2Upc7SyMGkw4g/exec"                   // URL de la app web de Google Apps Script (ver guía)
+};
+/* ============================================================================== */
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const PEND="Por confirmar";
+const priceSet=typeof CONFIG.precioPreventa==="number"&&CONFIG.precioPreventa>0;
+const fmt=n=>new Intl.NumberFormat("es-CO",{style:"currency",currency:CONFIG.moneda,maximumFractionDigits:0}).format(n);
+const configured=CONFIG.estado==="activa"&&priceSet&&(CONFIG.tipoReserva==="sin_pago"||(CONFIG.tipoReserva==="con_pago"&&!!CONFIG.urlPagos));
+const API=CONFIG.urlScript,canWrite=!!API;
+
+/* --- Render de configuración --- */
+$$("[data-cfg]").forEach(e=>{const v=CONFIG[e.dataset.cfg];if(v==null||v===""){e.textContent=PEND;e.classList.add("pend")}else e.textContent=v+(CONFIG.pendientes.includes(e.dataset.cfg)?" (por confirmar)":"")});
+$("#price").innerHTML=priceSet?fmt(CONFIG.precioPreventa):'<span class="pend" style="font-size:1.4rem">Precio por definir</span>';
+$("#regular").textContent=typeof CONFIG.precioRegular==="number"?"Precio regular: "+fmt(CONFIG.precioRegular):"";
+$("#offnote").textContent="Preventa en etapa de validación: no se realiza ningún cobro y la experiencia está sujeta a confirmación.";
+$("#getres").textContent="puedes confirmar que estarías dispuesto/a a reservar tu cupo al precio anunciado. No es un pago.";
+const pf={fl:[CONFIG.fecha,CONFIG.lugar].every(Boolean)?CONFIG.fecha+" · "+CONFIG.lugar+" (por confirmar)":"Información por confirmar.",pr:priceSet?"El precio de preventa evaluado es "+fmt(CONFIG.precioPreventa)+". No se cobra nada en esta fase.":"Información por confirmar.",rv:"Es una preventa sin pago: indicas si reservarías tu cupo al precio anunciado y, si quieres, confirmas tu intención. No se realiza ningún cobro y la experiencia está sujeta a confirmación."};
+$$("[data-cfgf]").forEach(e=>e.textContent=pf[e.dataset.cfgf]);
+const AGES=[["","Elige tu rango"],["<18","Menos de 18"],["18-22","18 a 22"],["23-26","23 a 26"],[">26","27 o más"]];
+$("#ag").innerHTML=AGES.map(a=>`<option value="${a[0]}">${a[1]}</option>`).join("");
+$("#sc").innerHTML=[1,2,3,4,5].map(i=>`<label><input type="radio" name="it" value="${i}"><span>${i}</span></label>`).join("");
+
+/* --- Reto interactivo del hero --- */
+const FB=["Buscar un tutorial funciona, pero ¿y si no tienes aguja a mano?","Pedir ayuda también es una habilidad. ¿Y si no hay nadie cerca?","Improvisar con recursos limitados es justo lo que se practica aquí."];
+$$(".reto button").forEach((b,i)=>b.onclick=()=>{$$(".reto button").forEach(x=>x.setAttribute("aria-pressed",x===b));$("#fb").textContent=FB[i]});
+
+/* --- Utilidades --- */
+const sha=async s=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s.trim().toLowerCase())))].map(b=>b.toString(16).padStart(2,"0")).join("").slice(0,32);
+const elig=a=>a==="18-22"||a==="23-26";
+const now=()=>new Date().toISOString();
+function banner(){const b=$("#banner");let t="";
+ if(!API)t="Registro no conectado: falta CONFIG.urlScript. Las respuestas NO se guardan (ver guía de conexión con Excel).";
+ else if(!configured)t="Modo prueba: los registros se marcan como de prueba y no cuentan en los resultados.";
+ if(t){b.hidden=false;b.innerHTML='<p class="note" style="margin-top:16px">'+t+"</p>"}}
+const go=u=>{const a=document.createElement("a");a.href=u;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove()};
+
+/* --- Dialogs --- */
+const dl=$("#dl");$("#dlx").onclick=()=>dl.close();
+function open(html){$("#dlb").innerHTML=html;if(!dl.open)dl.showModal()}
+$$("[data-legal]").forEach(a=>{a.onclick=e=>{e.preventDefault();const d=a.dataset.legal==="datos",u=d?CONFIG.urlPoliticaDatos:CONFIG.urlTerminos,t=d?CONFIG.textoDatos:CONFIG.textoTerminos;
+ if(u){go(u);return}
+ open("<h3>"+(d?"Política de tratamiento de datos":"Términos y condiciones de reserva")+"</h3><p>"+(t||"Texto por completar por el equipo antes de publicar. Aún no existe una política aprobada.")+"</p>")};
+ a.onkeydown=e=>{if(e.key==="Enter")a.click()}});
+
+/* --- Medición (un visitante = un id guardado en su navegador) --- */
+const vid=(()=>{try{let v=localStorage.getItem("aerl_vid");if(!v){v=crypto.randomUUID();localStorage.setItem("aerl_vid",v)}return v}catch(e){return Math.random().toString(36).slice(2)}})();
+const src=new URLSearchParams(location.search).get("utm_source")||(document.referrer?new URL(document.referrer).hostname:"directo");
+const post=async o=>(await fetch(API,{method:"POST",body:JSON.stringify(o)})).json();
+const sent={};const evt=t=>{if(!API||sent[t])return;sent[t]=1;post({action:"evento",vid,tipo:t,fuente:src,precio:priceSet?CONFIG.precioPreventa:null}).catch(()=>{})};
+banner();evt("visita");
+$$("[data-cta]").forEach(b=>b.addEventListener("click",()=>evt("clic_reservar")));
+new IntersectionObserver((es,o)=>{if(es.some(e=>e.isIntersecting)){evt("vio_precio");o.disconnect()}},{threshold:.4}).observe($("#oferta"));
+
+/* --- Formulario de interés + intención de reserva --- */
+const WL={si:"Sí",no:"No",duda:"No estoy seguro/a"};
+const setE=(k,m)=>{$(`[data-e=${k}]`).textContent=m||""};
+const tokFor=em=>{try{const k="aerl_tok_"+em.toLowerCase();let t=localStorage.getItem(k);if(!t){t=crypto.randomUUID();localStorage.setItem(k,t)}return t}catch(e){return crypto.randomUUID()}};
+$("#wlq").textContent=priceSet?"Si Adulting Escape & Rescue Lab ofreciera esta experiencia por el precio anunciado de "+fmt(CONFIG.precioPreventa)+", ¿estarías dispuesto/a a reservar tu cupo?":"Falta definir el precio de preventa: la pregunta comercial no está activa.";
+if(!priceSet)$$("#fi input,#fi select,#bi").forEach(x=>x.disabled=true);
+$$("[data-reserve]").forEach(b=>b.onclick=()=>{$("#interes").scrollIntoView({behavior:"smooth"});setTimeout(()=>$("#n").focus({preventScroll:true}),500)});
+$("#fi").onsubmit=async e=>{e.preventDefault();
+ const v={n:$("#n").value.trim(),em:$("#em").value.trim(),ag:$("#ag").value,sk:$("#sk").value,it:($("input[name=it]:checked")||{}).value,wl:($("input[name=wl]:checked")||{}).value,co:$("#co").checked};
+ const E={n:v.n.length<2&&"Escribe tu nombre.",em:!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.em)&&"Escribe un correo válido, como nombre@correo.com.",ag:!v.ag&&"Elige tu rango de edad.",sk:!v.sk&&"Elige una habilidad.",it:!v.it&&"Elige un valor de 1 a 5.",wl:!v.wl&&"Elige una opción; cualquiera es válida.",co:!v.co&&"Debes aceptar el tratamiento de datos para continuar."};
+ Object.keys(E).forEach(k=>setE(k,E[k]));const first=Object.keys(E).find(k=>E[k]);
+ const R=$("#ri");R.innerHTML="";if(first){$(first==="it"?"input[name=it]":first==="wl"?"#w1":"#"+first).focus();return}
+ if(!priceSet)return;
+ if(!API){R.innerHTML='<p class="msg bad">Tus datos son válidos, pero NO se guardaron: el registro no está conectado todavía.</p>';return}
+ const b=$("#bi");b.disabled=true;b.textContent="Enviando…";
+ try{const token=tokFor(v.em);
+  const r=await post({action:"respuesta",token,rec:{name:v.n,email:v.em,ageRange:v.ag,eligible:elig(v.ag),skill:v.sk,interest:+v.it,priceShown:CONFIG.precioPreventa,willing:v.wl,consent:true,source:src,isTest:!configured}});
+  if(!r.ok){R.innerHTML='<p class="msg bad">'+(r.error==="duplicado"?"Este correo ya respondió en este experimento y no se cuenta dos veces. Para corregir tu respuesta, escribe al contacto del proyecto.":"No pudimos guardar tu registro. Revisa los datos e inténtalo de nuevo.")+'</p>';return}
+  const upd=r.updated?'<p class="msg ok">Actualizamos tu respuesta anterior; cuenta una sola vez.</p>':"";
+  if(v.wl==="si"){R.innerHTML=upd+'<div class="card" style="margin-top:16px"><h3>Gracias por tu interés</h3><p>Esta es una preventa en etapa de validación. Al confirmar, nos indicas que estarías dispuesto/a a reservar tu cupo al precio anunciado. En este momento no se realizará ningún cobro y la experiencia aún está sujeta a confirmación.</p><div class="row"><button class="btn" type="button" id="ci">Sí, confirmo mi intención de reservar</button><button class="btn o" type="button" id="cb">Volver a revisar la oferta</button></div><p id="cm" aria-live="polite"></p></div>';
+   $("#cb").onclick=()=>$("#oferta").scrollIntoView({behavior:"smooth"});
+   $("#ci").onclick=async()=>{const x=$("#ci");x.disabled=true;try{const q=await post({action:"confirmar",email:v.em,token});if(!q.ok)throw 0;$("#cm").className="msg ok";$("#cm").textContent="Registramos tu intención de reserva. No se realizó ningún cobro y nada está confirmado todavía."}catch(z){x.disabled=false;$("#cm").className="msg bad";$("#cm").textContent="No pudimos guardar la confirmación. Inténtalo de nuevo."}}
+  }else R.innerHTML=upd+'<p class="msg ok">Gracias por responder. Tu respuesta quedó registrada y nos ayuda a entender qué necesitan las personas de tu edad.</p>';
+  $("#fi").reset()
+ }catch(x){R.innerHTML='<p class="msg bad">No pudimos conectar con el registro. Revisa tu conexión e inténtalo de nuevo.</p>'}
+ finally{b.disabled=false;b.textContent="Enviar mi respuesta"}};
+
+/* --- Panel administrativo (#admin) y exportación --- */
+let RAW=[];
+const HDR=["ID del registro","Fecha y hora de respuesta","Nombre","Correo electrónico","Rango de edad","Elegible 18 a 26","Habilidad que desea aprender","Nivel de interés (1-5)","Precio de preventa mostrado","¿Estarías dispuesto/a a reservar a este precio?","Confirmó intención de reserva","Estado del registro","Consentimiento de datos","Fuente de llegada","Registro de prueba"];
+const safe=x=>typeof x==="string"&&/^[=+\-@]/.test(x)?"'"+x:x;
+function exportar(){const m=$("#exm");if(!RAW.length){m.textContent="Aún no hay registros para exportar.";return}
+ const rows=RAW.map(r=>r.map(safe)),stamp=new Date().toISOString().slice(0,10);let blob,name;
+ try{if(typeof XLSX==="undefined")throw 0;const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([HDR,...rows]),"Respuestas");
+  blob=new Blob([XLSX.write(wb,{type:"array",bookType:"xlsx"})],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});name="AERL_respuestas_"+stamp+".xlsx";m.textContent="Archivo .xlsx con "+rows.length+" registros (incluye la columna de prueba)."
+ }catch(x){const q=c=>'"'+String(c??"").replace(/"/g,'""')+'"';blob=new Blob(["\ufeff"+[HDR,...rows].map(r=>r.map(q).join(",")).join("\r\n")],{type:"text/csv;charset=utf-8"});name="AERL_respuestas_"+stamp+".csv";m.textContent="No se pudo generar .xlsx; se descargó un .csv UTF-8 compatible con Excel."}
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove()}
+const showAdm=()=>{$("#admin").hidden=location.hash!=="#admin"};showAdm();addEventListener("hashchange",showAdm);
+$("#al").onclick=async()=>{const m=$("#exm");if(!API){m.textContent="Falta CONFIG.urlScript.";return}m.textContent="Verificando…";
+ try{const r=await(await fetch(API+"?action=admin&key="+encodeURIComponent($("#ak").value))).json();if(!r.ok)throw 0;
+  RAW=r.rows;$("#lg").hidden=true;$("#adm").hidden=false;$("#exp").onclick=exportar;m.textContent="";metrics(r.events)}catch(x){m.textContent="Clave incorrecta o sin conexión."}};
+function metrics(EV){const box=$("#mx"),W2={"Sí":"si","No":"no","No estoy seguro/a":"duda"};
+ const L=RAW.map(r=>({willing:W2[r[9]],eligible:r[5]==="Sí",intent:r[10]==="Sí",consent:r[12]==="Sí",isTest:r[14]==="Sí",price:r[8]}));
+ const real=L.filter(l=>l.consent&&!l.isTest),el=real.filter(l=>l.eligible),n=(arr,k)=>arr.filter(l=>l.willing===k).length,conf=el.filter(l=>l.intent).length;
+ const V=new Set(EV.filter(e=>e[2]==="visita").map(e=>e[1])).size;
+ const pc=(x,y)=>y?(100*x/y).toFixed(1)+" %":"Sin datos";
+ const K=[["Participantes reales",real.length],["Respuestas Sí",n(real,"si")],["Respuestas No",n(real,"no")],["No estoy seguro/a",n(real,"duda")],["Elegibles 18 a 26",el.length],["Intención confirmada (elegibles)",conf],["Precio evaluado",priceSet?fmt(CONFIG.precioPreventa):"Por definir"],["Inicio / fin",(CONFIG.fechaInicio||"Por definir")+" / "+(CONFIG.fechaFin||"Por definir")],["Registros de prueba",L.length-real.length],["Visitas únicas (no son interesados)",V],["Disposición a reservar",pc(n(el,"si"),el.length)],["Confirmación de intención",pc(conf,el.length)]];
+ const ok=CONFIG.muestraMinima&&el.length>=CONFIG.muestraMinima;
+ box.innerHTML='<div class="mx">'+K.map(k=>`<div class="card"><b>${k[1]}</b>${k[0]}</div>`).join("")+'</div><p style="margin-top:16px">Denominador de ambas tasas: interesados elegibles (n = '+el.length+'). Visitas a respuestas: '+pc(real.length,V)+' (denominador: visitas únicas). Resultados = evidencia de intención declarada, no ventas. Criterio del experimento: al menos 20 %. '+(ok?"La muestra mínima definida se alcanzó; interpreta con criterio académico.":"Sin conclusión: aún no hay datos suficientes"+(CONFIG.muestraMinima?"":" (el equipo debe definir la muestra mínima)")+".")+'</p>'+(L.length?"":'<p class="pend">Aún no hay respuestas registradas.</p>');
+ const t=real.length||1;$("#ch").innerHTML="<h3>Respuestas de participantes reales</h3>"+[["Sí","si"],["No","no"],["No estoy seguro/a","duda"]].map(r=>{const c=n(real,r[1]);return `<div class="bar"><b>${r[0]}</b><span><i style="width:${100*c/t}%"></i></span><b>${c}</b></div>`}).join("")}
+</script></body></html>
